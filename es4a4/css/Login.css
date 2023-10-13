@@ -1,0 +1,66 @@
+/* Estilos gerais da página */
+body {
+    font-family: 'Arial'; /* Define a fonte de texto padrão da página */
+    font-size: 10px; /* Define o tamanho de fonte padrão */
+    background: linear-gradient(90deg, #ffffff 10%, #ffffff 100%); /* Aplica um fundo com gradiente linear */
+    margin: 0; /* Remove margens padrão do corpo */
+    padding: 0; /* Remove preenchimento padrão do corpo */
+    display: flex; /* Usa um layout flexível para posicionar elementos */
+    flex-direction: column; /* Organiza os elementos em coluna */
+    align-items: center; /* Centraliza os elementos horizontalmente */
+    justify-content: center; /* Centraliza os elementos verticalmente */
+    min-height: 100vh; /* Define a altura mínima da página como 100% da altura da janela de visualização */
+}
+
+/* Estilos do logotipo */
+.czr-logo {
+    color: #ffffff; /* Define a cor do texto do logotipo */
+    width: 25rem; /* Define a largura do logotipo */
+    display: flex; /* Usa um layout flexível para posicionar elementos */
+    justify-content: center; /* Centraliza o conteúdo horizontalmente */
+    align-items: center; /* Centraliza o conteúdo verticalmente */
+    margin-bottom: 20px; /* Adiciona margem inferior ao logotipo */
+}
+
+/* Estilos do contêiner de login */
+.login-container {
+    background-color: hsl(0, 94%, 34%); /* Define a cor de fundo do contêiner de login */
+    padding: 1.9pc; /* Adiciona preenchimento interno ao contêiner de login */
+    border-radius: 20px 20px 20px 20px; /* Define o raio da borda do contêiner de login */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Adiciona uma sombra ao contêiner de login */
+    text-align:center; /* Centraliza o texto no contêiner de login */
+    width: 10%; /* Define a largura máxima do contêiner de login */
+}
+
+h1 {
+    margin-bottom: 15px; /* Adiciona margem inferior ao título */
+}
+
+/* Estilos para rótulos e campos de entrada */
+label {
+    display:flex; /* Define os rótulos como elementos de bloco para empilhá-los verticalmente */
+    margin-bottom: 8px; /* Adiciona margem inferior aos rótulos */
+}
+
+input {
+    width: 90%; /* Define a largura dos campos de entrada como 100% do contêiner pai */
+    padding: 8px; /* Adiciona preenchimento interno aos campos de entrada */
+    margin-bottom: 12px; /* Adiciona margem inferior aos campos de entrada */
+    border: 1px solid #000000; /* Adiciona uma borda aos campos de entrada */
+    border-radius: 9px; /* Define o raio da borda dos campos de entrada */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Adiciona uma sombra aos campos de entrada */
+}
+
+/* Estilos para botão */
+button {
+    background-color: #b8b6b6; /* Define a cor de fundo do botão */
+    color: #000000; /* Define a cor do texto do botão */
+    padding: 10px 15px; /* Adiciona preenchimento interno ao botão */
+    border: none; /* Remove a borda do botão */
+    border-radius: 10px; /* Define o raio da borda do botão */
+    cursor: pointer; /* Altera o cursor ao pairar sobre o botão */
+}
+
+button:hover {
+    background: linear-gradient(90deg, #08bb4d 10%, #11d411 100%); /* Efeito de fundo gradiente no hover */
+}
