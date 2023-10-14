@@ -1,181 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <title>CMYT</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
-        integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/bootstrap-grid.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/responsive.css">
-    <link rel="icon" href="imagens/favicon.ico.svg">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.6.6/dragula.min.css">
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.6.6/dragula.min.js"
-        integrity="sha512-MrA7WH8h42LMq8GWxQGmWjrtalBjrfIzCQ+i2EZA26cZ7OBiBd/Uct5S3NP9IBqKx5b+MMNH1PhzTsk6J9nPQQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Gerenciamento de Projetos</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-    <header class="header-area">
-        <div class="header__wrapper">
-            <div class="header__board">
-                <p class="header__board-txt">John Smith's Board</p>
-            </div>
-            <a href="" class="header__logo">
-                <img src="imagens/logo.png" alt="logo" class="header__logo">
-            </a>
-            <div class="wrapper">
-                <div class="search__box">
-                    <input type="text" class="search__txt" placeholder="Search...">
-                    <a href="#" class="search__btn"></a>
-                </div>
-                <div class="user__icon">
-                    <img src="imagens/user.png" alt="user" class="user__icon-foto">
-                </div>
-            </div>
-            <div class="user__icon-mobile">
-                <img src="imagens/user.png" alt="user" class="user__icon-foto">
-            </div>
-        </div>
-        <div class="wrapper-mobile">
-            <div class="search__box">
-                <input type="text" class="search__txt" placeholder="Search...">
-                <a href="#" class="search__btn"></a>
-            </div>
-        </div>
+  <div class="container">
+    <header>
+      <h1>Sistema de Gerenciamento de Projetos</h1>
     </header>
-    <section class="section-dashboard">
-        <div class="wrapper__dashboard swiper" id="root">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div class="dashboard dashboard__toDo">
-                        <div class="dashboard__content">
-                            <h2 class="title1 dashboard__title">To Do</h2>
-                        </div>
-                        <div class="dashboard__cards-todo" id="todoCase" data-column-id='1'></div>
-                        <button class="btn__dashboard btn__add" id="btn-add"><i class="plus icon"></i>Add task</button>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="dashboard dashboard__inProgress">
-                        <div class="dashboard__content">
-                            <h2 class="title1 dashboard__title">In Progress</h2>
-                        </div>
-                        <div class="dashboard__cards-inProgress" data-column-id='2'></div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="dashboard dashboard__done">
-                        <div class="dashboard__content">
-                            <h2 class="title1 dashboard__title">Done</h2>
-                        </div>
-                        <div class="dashboard__cards-done" data-column-id='3'></div>
-                        <button class="btn__dashboard btn__delete">Delete all</button>
-                    </div>
-                </div>
-            </div>
+    <nav>
+      <ul>
+        <li><a href="#" onclick="showProjects()">Projetos</a></li>
+        <li><a href="#" onclick="showTasks()">Tarefas</a></li>
+        <li><a href="#" onclick="showMembers()">Membros da Equipe</a></li>
+        <li><a href="#" onclick="showCommunication()">Comunicação</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropbtn">Usuário</a>
+          <div class="dropdown-content">
+            <a href="#">Perfil</a>
+            <a href="#">Configurações</a>
+            <a href="#">Sair</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+    <main>
+      <section id="content">
+        <div class="project-section">
+          <h2>Projetos</h2>
+          <ul>
+            <li><a href="#" onclick="showProjectDetails(1)">Projeto 1</a></li>
+            <li><a href="#" onclick="showProjectDetails(2)">Projeto 2</a></li>
+          </ul>
         </div>
-    </section>
-    <div class="ui modal pop-up pop-up__delete-all">
-        <div class="container__pop-up">
-            <div class="pop-up__image-wrap">
-                <img src="imagens/remove.png" alt="remove-icon" class="pop-up__image">
-            </div>
-            <div class="pop-up__text-wrap">
-                <h1 class="title1">Are you sure?</h1>
-                <h2 class="title2">Do you really want to delete these records? This process cannot be undone.</h2>
-            </div>
-            <div class="actions pop-up__buttons-wrap">
-                <button class="negative ui btn btn--light">Cancel</button>
-                <button class="positive ui btn btn--dark">Delete</button>
-            </div>
+      </section>
+      <section id="activities">
+        <div class="activities-table">
+          <h2>Atividades Atribuídas</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Atividade</th>
+                <th>Prazo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Atividade 1</td>
+                <td>15/10/2023</td>
+              </tr>
+              <tr>
+                <td>Atividade 2</td>
+                <td>18/10/2023</td>
+              </tr>
+              <!-- Adicionar mais linhas conforme necessário -->
+            </tbody>
+          </table>
         </div>
-    </div>
-    <div class="ui modal pop-up__inprogress pop-up margin-remove">
-        <div class="container__pop-up">
-            <div class="image content">
-                <div class="ui medium image pop-up__image-wrap ">
-                    <img src="imagens/remove.png" alt="remove-icon" class="pop-up__image">
-                </div>
-            </div>
-            <div class="description">
-                <div class="ui header pop-up__text-wrap ">
-                    <h1 class="title1">Are you sure?</h1>
-                    <h2 class="title2">You added more than 6 tasks into «In Progress» column.</h2>
-                </div>
-            </div>
-            <div class="actions pop-up__buttons-wrap">
-                <button class="positive ui button btn-inprogress--dark" id="confirm-move">Confirm</button>
-            </div>
+        <div class="activities-table">
+          <h2>Atividades Não Concluídas</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Atividade</th>
+                <th>Prazo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Atividade 3</td>
+                <td>20/10/2023</td>
+              </tr>
+              <tr>
+                <td>Atividade 4</td>
+                <td>22/10/2023</td>
+              </tr>
+              <!-- Adicionar mais linhas conforme necessário -->
+            </tbody>
+          </table>
         </div>
-    </div>
-    <div class="ui modal add__todo" id="modal_edit">
-        <div class="gradient-line"></div>
-        <div class="header">Edit Trello Card</div>
-        <div class="content">
-            <form class="ui form" id="form-edit">
-                <div class="required field">
-                    <input type="text" name="title" placeholder="Title" id="title-edit">
-                </div>
-                <div class="required field">
-                    <textarea class="input-description" rows="5" name="description" placeholder="Description"
-                        id="desc-edit"></textarea>
-                </div>
-            </form>
-        </div>
-        <div class="actions">
-            <div class="edit ui fluid selection dropdown user-select" id="dropdown-edit">
-                <input type="hidden" name="user">
-                <i class="dropdown icon"></i>
-                <div class="default text">Select Friend</div>
-                <div class="menu" id="menu-edit">
-                </div>
-            </div>
-            <div class="button-agreement">
-                <div class="ui cancel button">Cancel</div>
-                <div class="positive ui approve button" id="editBtn">Edit</div>
-            </div>
-        </div>
-    </div>
-    <div class="ui modal add__todo" id="modal_add">
-        <div class="gradient-line"></div>
-        <div class="header">Create Trello Card</div>
-        <div class="content">
-            <form class="ui form add" id="form-add">
-                <div class="field">
-                    <input type="text" name="title" placeholder="Title" class="input-title" id="inputTitle" required>
-                </div>
-                <div class="field">
-                    <textarea class="input-description" rows="5" name="description" placeholder="Description"
-                        id="inputDescription" required></textarea>
-                </div>
-            </form>
-        </div>
-        <div class="actions">
-            <div class="add ui fluid selection dropdown user-select required field" id="selection">
-                <!-- <input type="hidden" name="user"> -->
-                <!-- <i class="dropdown icon"></i> -->
-                <!-- <div class="default text">Select User</div> -->
-                <div class="menu" id="menu"></div>
-            </div>
-            <div class="button-agreement">
-                <div class="ui cancel button">Cancel</div>
-                <div class="positive ok ui approve button" id="approveBtn">Confirm</div>
-            </div>
-        </div>
-    </div>
-    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
-    <script src="js/main.js" type="module"></script>
-</body>
+      </section>
+      <section id="calendar">
+        <h2>Calendário Anual</h2>
+        <div id="calendar-container"></div>
+      </section>
+    </main>
 
+    <footer>
+      <p>&copy; 2023 Sistema de Gerenciamento de Projetos</p>
+    </footer>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+  <script src="app.js"></script>
+</body>
 </html>
