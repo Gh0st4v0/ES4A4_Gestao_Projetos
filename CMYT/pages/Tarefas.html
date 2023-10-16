@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarefas</title>
+    <link rel="stylesheet" href="/CMYT/css/Tarefas.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Tarefas</h1>
+            <nav>
+                <ul>
+                    <li><a href="/CMYT/pages/Main.html">Início</a></li>
+                    <li><a href="/CMYT/pages/Projetos.html">Projetos</a></li>
+                    <li><a href="/CMYT/pages/Tarefas.html">Tarefas</a></li>
+                    <li><a href="#">Chat</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropbtn">Usuário</a>
+                        <div class="dropdown-content">
+                            <a href="#">Perfil</a>
+                            <a href="#">Configurações</a>
+                            <a href="#">Sair</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main id="projects-list">
+            <div class="project-section">
+                <h2>Projetos</h2>
+                <ul>
+                    <li><a href="#" onclick="showProjectDetails(1)">Projeto 1</a></li>
+                    <li><a href="#" onclick="showProjectDetails(2)">Projeto 2</a></li>
+                </ul>
+            </div>
+        </main>
+        <div id="project-details" class="hidden">
+            <button onclick="showProjects()">Voltar</button>
+            <h2 id="project-name"></h2>
+            <p id="project-description"></p>
+            <p id="project-start-date"></p>
+            <p id="project-status"></p>
+            <p id="project-priority"></p>
+        </div>
+    </div>
+    <script src="/CMYT/js/Tarefas.js"></script>
+</body>
+</html>
