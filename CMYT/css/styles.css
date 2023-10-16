@@ -122,6 +122,17 @@ section {
   border-radius: 0px;
  }
  
+ #content{
+  display: flex;
+  justify-content: space-around;
+  width: 60%;
+  max-height: initial;
+ }
+
+ #activities{
+  width: 33%;
+ }
+ 
  section h2 {
   margin-bottom: 20px;
  }
@@ -217,14 +228,78 @@ footer {
 /* Estilos para o chat */
 
 .chat-section {
-  background-color: #156dc5;
+  border: 1px solid #521010;
+  background-color: #757575;
   color: #fff;
-  padding: 200px;
-  border-radius: 100px;
-  margin-top: 20px;
-  position:absolute;
-  top: 5.7cm;
-  right: 12cm;
+  padding: 1%;
+  width: 60%;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+   /* Adjust height and max-height */
+   overflow-y: hidden; /* Hide vertical overflow initially */
+}
+
+#chat-messages {
+  /* Constrain the chat messages height within the chat section */
+  max-height: 100%;
+  overflow-y: auto; /* Allow vertical scrolling when needed */
+}
+
+.chat-section h2{
+  text-align: center;
+}
+
+  .tituloEMensagens #chat-messages{
+  height: 340px;
+  max-height: 340px;
+  overflow-y: auto;
+}
+
+.chat-message{
+  background-color: #616161;
+  padding: 10px 20px;
+  width: fit-content;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  max-width: 90%;
+  word-wrap: break-word; /* Wrap long words to the next line */
+}
+
+.chat-message-reply {
+  background-color: #39c0ff;
+  padding: 10px 20px;
+  width: fit-content;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  max-width: 90%;
+  word-wrap: break-word; /* Wrap long words to the next line */
+}
+
+.chat-section h2{
+  text-align: center;
+  max-height: 100%;
+}
+
+.escreverEEnviar{
+  display: flex;
+  justify-content: space-around;
+}
+
+textarea#message-input {
+  border-radius: 10px;
+  width: 85%; /* Adjust the width as needed */
+  height: 90%; /* Adjust the height as needed */
+  resize: none;
+}
+
+#botaoEnviarMensagem{
+  text-align: center;
+  padding: 0;
+  height: 100%;
+  width: 10%;
 }
 /* Adicione outros estilos conforme necessário */
 

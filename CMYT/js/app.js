@@ -52,7 +52,8 @@ const userProjects = [
       navLinks: true,
       editable: true,
       eventLimit: true,
-      events: activityData
+      events: activityData,
+      titleFormat: 'MMMM YYYY'
     });
   }
   
@@ -162,11 +163,13 @@ const userProjects = [
   function showActivityDetails(activity) {
     const content = document.getElementById('content');
     content.innerHTML = `
+    <div id="project-side">
       <button onclick="showProjects()">Voltar</button>
       <h2>${activity.title}</h2>
       <p>${activity.description}</p>
       <p>Prazo: ${activity.start} - ${activity.end}</p>
       <button onclick="showFeedbackForm('${activity.title}')">Dar Feedback</button>
+    </div id="project-side">
     `;
   }
   
@@ -186,12 +189,16 @@ const userProjects = [
   
   function showChat() {
     const content = document.getElementById('content');
-    content.innerHTML = `
+    content.innerHTML += `
       <div class="chat-section">
+        <div class="tituloEMensagens">
         <h2>Chat em Tempo Real</h2>
         <div id="chat-messages"></div>
+        </div>
+        <div class="escreverEEnviar">
         <textarea id="message-input" placeholder="Digite sua mensagem"></textarea>
-        <button onclick="sendMessage()">Enviar</button>
+        <button id="botaoEnviarMensagem" onclick="sendMessage()">Enviar</button>
+        </div>
       </div>
     `;
   }
