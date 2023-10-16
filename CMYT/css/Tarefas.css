@@ -18,143 +18,142 @@ body {
     right: 19cm;
   }
 
-  .container {
-    margin: 20px;
-    padding: 20px;
-    box-shadow: 20px 20px 20px 20px rgba(33, 32, 34, 0.1);
-    background-color: #f0f0f0;
-    border-radius: 20px;
-  }
-  
-  header {
-    background-color: #c5c5c5;
-    color: #000;
-    padding: 20px;
-    text-align: center;
-    border-radius: 20px;
-    height: 90px;
-  }
-  
-  nav ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  nav ul li {
-    display: inline;
-    margin-right: 10px;
-  }
-  
-  nav ul li a {
-    color: #7e1ac0;
-    text-decoration: none;
-    text-align: center;
-  }
-  
-  nav ul li a:hover {
-    text-decoration: underline;
-  }
-  
-  .project-section {
-    background-color: #f0f0f0;
-    padding: 20px;
-    border-radius: 10px;
-  }
-  
-  .project-section h2 {
-    margin-bottom: 10px;
-    color: #333;
-  }
-  
-  .project-section ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .project-section li {
-    margin-bottom: 10px;
-  }
-  
-  .project-section li a {
-    text-decoration: none;
-    color: #7e1ac0;
-  }
-  
-  .project-section li a:hover {
-    text-decoration: underline;
-  }
-  
-  .hidden {
-    display: none;
-  }
-  
-  button {
-    background-color: hsl(0, 94%, 34%);
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-   }
-   
-   button:hover {
-    background-color: hsl(0, 94%, 24%);
-   }
-   
-  
-  
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #a07171;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-  }
-  
-  .dropdown-content a {
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    color: black;
-  }
-  
-  .dropdown-content a:hover {
-    background-color: #f1c40f;
-    color: white;
-  }
-  
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
-  
-  /* Estilos para o projeto detalhado */
-  
-  #tarefas-details {
-    background-color: #f0f0f0;
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 20px;
-  }
-  
-  #tarefas-details button {
-    background-color: #7e1ac0;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-bottom: 10px;
-  }
-  
-  #tarefas-details button:hover {
-    background-color: #5c136d;
-  }
-  
+ .container {
+  margin: 20px;
+  padding: 20px;
+  box-shadow: 20px 20px 20px 20px rgba(33, 32, 34, 0.1);
+  background-color: #f0f0f0;
+  border-radius: 20px;
+}
+
+header {
+  background-color: #c5c5c5;
+  color: #000;
+  padding: 20px;
+  text-align: center;
+  border-radius: 20px;
+  height: 90px;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 10px;
+}
+
+nav ul li a {
+  color: #7e1ac0;
+  text-decoration: none;
+  text-align: center;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+.project-section {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.project-section h2 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.project-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.project-section li {
+  margin-bottom: 10px;
+}
+
+.project-section li a {
+  text-decoration: none;
+  color: #7e1ac0;
+}
+
+.project-section li a:hover {
+  text-decoration: underline;
+}
+
+.hidden {
+  display: none;
+}
+
+button {
+  background-color: hsl(0, 94%, 34%);
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+ }
+ 
+ button:hover {
+  background-color: hsl(0, 94%, 24%);
+ }
+ 
+
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #a07171;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  color: black;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1c40f;
+  color: white;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Estilos para o projeto detalhado */
+
+#tarefas-details {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+#tarefas-details button {
+  background-color: #7e1ac0;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-bottom: 10px;
+}
+
+#tarefas-details button:hover {
+  background-color: #5c136d;
+}
