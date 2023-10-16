@@ -1,6 +1,6 @@
-function showTarefasDetails(projectId) {
+function showProjectDetails(projectId) {
     // Simulando dados do projeto com base no ID
-    const tarefas = {
+    const projects = {
         1: {
             name: "Eletrolux",
             description: "Adição de funcionalidades (x).",
@@ -18,19 +18,19 @@ function showTarefasDetails(projectId) {
         }
     };
 
-    const tarefas = tarefas[tarefasId];
+    const project = projects[projectId];
 
-    document.getElementById("tarefas-name").innerText = `Nome do Projeto: ${tarefas.name}`;
-    document.getElementById("tarefas-description").innerText = `Descrição: ${tarefas.description}`;
-    document.getElementById("tarefas-start-date").innerText = `Data de Início: ${tarefas.startDate}`;
-    document.getElementById("tarefas-status").innerText = `Status: ${tarefas.status}`;
-    document.getElementById("tarefas-priority").innerText = `Prioridade: ${tarefas.priority}`;
+    document.getElementById("project-name").innerText = `Nome do Projeto: ${project.name}`;
+    document.getElementById("project-description").innerText = `Descrição: ${project.description}`;
+    document.getElementById("project-start-date").innerText = `Data de Início: ${project.startDate}`;
+    document.getElementById("project-status").innerText = `Status: ${project.status}`;
+    document.getElementById("project-priority").innerText = `Prioridade: ${project.priority}`;
 
     // Exibindo os detalhes do projeto
-    document.getElementById("tarefas-details").classList.remove("hidden");
+    document.getElementById("project-details").classList.remove("hidden");
 }
 
-function showTarefas() {
+function showProjects() {
     // Escondendo os detalhes do projeto
-    document.getElementById("tarefas-details").classList.add("hidden");
+    document.getElementById("project-details").classList.add("hidden");
 }
