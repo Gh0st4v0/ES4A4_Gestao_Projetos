@@ -136,14 +136,14 @@ body {
   
   /* Estilos para o projeto detalhado */
   
-  #project-details {
+  #tarefas-details {
     background-color: #f0f0f0;
     padding: 20px;
     border-radius: 10px;
     margin-top: 20px;
   }
   
-  #project-details button {
+  #tarefas-details button {
     background-color: #7e1ac0;
     color: #fff;
     padding: 10px 20px;
@@ -154,7 +154,7 @@ body {
     margin-bottom: 10px;
   }
   
-  #project-details button:hover {
+  #tarefas-details button:hover {
     background-color: #5c136d;
   }
   
