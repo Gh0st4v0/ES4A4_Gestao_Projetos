@@ -1,0 +1,329 @@
+/* Estilos gerais */
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: hsl(0, 0%, 81%);
+  color: #000000;
+  margin: 0;
+  padding: 0;
+}
+.czr-logo {
+  color: hsl(0, 0%, 81%); /* Define a cor do texto do logotipo */
+  width: 25rem; /* Define a largura do logotipo */
+  display:block; /* Usa um layout flexível para posicionar elementos */
+  justify-content:center; /* Centraliza o conteúdo horizontalmente */
+  align-items: absolute; /* Centraliza o conteúdo verticalmente */
+  margin-bottom: 20px; /* Adiciona margem inferior ao logotipo */
+  position:absolute;
+  top: 39px;
+  right: 19cm;
+}
+.container {
+  margin: 20px;
+  padding: 20px;
+  box-shadow: 20px 20px 20px 20px rgba(33, 32, 34, 0.1);
+  background-color: hsl(0, 0%, 81%);
+  border-radius: 20px 20px 20px 20px;
+}
+
+/* Estilos do cabeçalho */
+
+header {
+  background-color: hsl(0, 0%, 81%);
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  border-radius: 20px 20px 20px 20px;
+  height: 90px; /* Altura fixa de 100 pixels */
+}
+
+/* Estilos da navegação */
+
+/* Estilos para navegação */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+ }
+ 
+ nav ul li {
+  display: inline;
+  margin-right: 10px;
+ }
+ 
+ nav ul li a {
+  color: #7e1ac0;
+  text-decoration:none;
+   text-align: center;
+ }
+ 
+ nav ul li a:hover {
+  text-decoration: underline;
+ }
+
+button {
+  background-color: hsl(0, 94%, 34%);
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+ }
+ 
+ button:hover {
+  background-color: hsl(0, 94%, 24%);
+ }
+ 
+
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #a07171;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  color: black;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1c40f;
+  color: white;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Estilos do conteúdo principal */
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+section {
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: hsl(0, 12%, 19%);
+  color: #fff;
+  border-radius: 0px;
+ }
+ 
+ #content{
+  display: flex;
+  justify-content: space-around;
+  width: 60%;
+  max-height: initial;
+ }
+
+ #activities{
+  width: 33%;
+ }
+ 
+ section h2 {
+  margin-bottom: 20px;
+ }
+ 
+ section p {
+  margin-bottom: 20px;
+  min-height: 50px; /* Altura mínima de 50 pixels */
+ }
+
+/* Estilos específicos para seções */
+
+.project-section,
+.activities-table,
+#calendar-box,
+#messages {
+  border: 1px solid #521010;
+  padding: 20px;
+  background-color: #757575;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.activities-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.activities-table th, .activities-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.activities-table th {
+  background-color: #616161;
+}
+
+#calendar-container {
+  width: 100%;
+  min-height: 25px; /* Altura mínima de 50 pixels */
+}
+
+#messages {
+  height: 300px;
+  overflow-y: auto;
+}
+
+/* Estilos para rodapé */
+footer {
+  background-color: hsl(0, 94%, 24%);
+  padding: 20px;
+  text-align: center;
+ }
+
+/* Estilos para outras funcionalidades (adapte conforme necessário) */
+
+.feedback-form {
+  background-color: #2ecc71;
+  color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.notification {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background-color: #e74c3c;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+
+/* Estilos para feedback */
+
+.feedback-form {
+  background-color: #2ecc71;
+  color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.feedback-form h3 {
+  color: #e2d9d9;
+}
+
+/* Adicione outros estilos conforme necessário */
+
+/* Estilos para o chat */
+
+.chat-section {
+  border: 1px solid #521010;
+  background-color: #757575;
+  color: #fff;
+  padding: 1%;
+  width: 60%;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+   /* Adjust height and max-height */
+   overflow-y: hidden; /* Hide vertical overflow initially */
+}
+
+#chat-messages {
+  /* Constrain the chat messages height within the chat section */
+  max-height: 100%;
+  overflow-y: auto; /* Allow vertical scrolling when needed */
+}
+
+.chat-section h2{
+  text-align: center;
+}
+
+  .tituloEMensagens #chat-messages{
+  height: 340px;
+  max-height: 340px;
+  overflow-y: auto;
+}
+
+.chat-message{
+  background-color: #616161;
+  padding: 10px 20px;
+  width: fit-content;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  max-width: 90%;
+  word-wrap: break-word; /* Wrap long words to the next line */
+}
+
+.chat-message-reply {
+  background-color: #39c0ff;
+  padding: 10px 20px;
+  width: fit-content;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  max-width: 90%;
+  word-wrap: break-word; /* Wrap long words to the next line */
+}
+
+.chat-section h2{
+  text-align: center;
+  max-height: 100%;
+}
+
+.escreverEEnviar{
+  display: flex;
+  justify-content: space-around;
+}
+
+textarea#message-input {
+  border-radius: 10px;
+  width: 85%; /* Adjust the width as needed */
+  height: 90%; /* Adjust the height as needed */
+  resize: none;
+}
+
+#botaoEnviarMensagem{
+  text-align: center;
+  padding: 0;
+  height: 100%;
+  width: 10%;
+}
+/* Adicione outros estilos conforme necessário */
+
+/* Estilos para artigos */
+article {
+  background-color: hsl(0, 43%, 23%);
+  padding: 20px;
+  margin: 20px;
+ }
+ 
+ article h2 {
+  margin-bottom: 10px;
+ }
+ 
+ article p {
+  margin-bottom: 20px;
+ }
+ 
+ article a {
+  color: #efecf1;
+  text-decoration: none;
+ }
+ 
+ article a:hover {
+  text-decoration: underline;
+ }
+ 

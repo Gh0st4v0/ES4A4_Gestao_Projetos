@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projetos</title>
+    <link rel="stylesheet" href="Projetos.css">
+    <script src="/testeteste/models/Usuario.js"></script>
+    <script src="/testeteste/controllers/UsuarioController.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Lista de Projetos</h1>
+            <nav>
+                <ul>
+                    <li><a href="Main.html">Início</a></li>
+                    <li><a href="Projetos.html">Projetos</a></li>
+                    <li><a href="Tarefas.html">Atividades</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropbtn">Usuário</a>
+                        <div class="dropdown-content">
+                            <a href="Perfil.html">Perfil</a>
+                            <a href="#">Configurações</a>
+                            <a href="#">Sair</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main id="projects-list">
+            <ul>
+                <li>
+                    <a href="#" onclick="showProjectDetails(1)">
+                        <img src="/CMYT/imagens/Eletrolux.png" alt="Projeto A">
+                        Eletrolux - Projeto Analyses
+                    </a>
+                </li>
+                <li>
+                    <a href="#" onclick="showProjectDetails(2)">
+                        <img src="/CMYT/imagens/Avon.png" alt="Projeto B">
+                        Avon - Gerenciamento de Compras
+                    </a>
+                </li>
+                <li>
+                    <a href="#" onclick="showProjectDetails(2)">
+                        <img src="/CMYT/imagens/vw.png" alt="Projeto B">
+                        BMW - Inteligencia Artificial
+                    </a>
+                </li>
+                <li>
+                    <a href="#" onclick="showProjectDetails(2)">
+                        <img src="/CMYT/imagens/Avon.png" alt="Projeto B">
+                        Avon - Gerenciamento de Entrega
+                    </a>
+                </li>
+                <!-- Adicione mais projetos conforme necessário -->
+            </ul>
+        </main>
+        <div id="project-details" class="hidden">
+            <button onclick="showProjects()">Voltar</button>
+            <h2 id="project-name"></h2>
+            <p id="project-description"></p>
+            <p id="project-start-date"></p>
+            <p id="project-status"></p>
+            <p id="project-priority"></p>
+            <!-- Aqui serão exibidos os detalhes do projeto selecionado -->
+        </div>
+    </div>
+</body>
+
+</html>

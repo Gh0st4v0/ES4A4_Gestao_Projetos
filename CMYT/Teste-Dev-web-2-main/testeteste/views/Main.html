@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gerenciamento de Projetos</title>
+    <link rel="stylesheet" href="Main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="/testeteste/models/Usuario.js"></script>
+    <script src="/testeteste/controllers/UsuarioController.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="czr-logo">
+                <img class="czr" alt="czr" src="/CMYT/imagens/1a.png" width="30%" height="30%">
+            </div>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="Projetos.html">Projetos</a></li>
+                <li><a href="Tarefas.html">Atividades</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Usuário</a>
+                    <div class="dropdown-content">
+                        <a href="Perfil.html">Perfil</a>
+                        <a href="/caminho-para-seu-projeto/configuracoes.html">Configurações</a>
+                        <a href="/caminho-para-seu-projeto/sair.html">Sair</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>        
+        <main>
+            <section id="content">
+                <div class="project-section">
+                    <h2>Projetos</h2>
+                    <ul>
+                        <li><a href="#" onclick="showProjectDetails(1); showChat();">Projeto 1</a></li>
+                        <li><a href="#" onclick="showProjectDetails(2); showChat();">Projeto 2</a></li>
+                    </ul>
+                </div>
+            </section>
+            <section id="activities">
+                <div class="activities-table">
+                    <h2>Atividades Atribuídas</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Atividade</th>
+                                <th>Prazo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Atividade 1</td>
+                                <td>15/10/2023</td>
+                            </tr>
+                            <tr>
+                                <td>Atividade 2</td>
+                                <td>18/10/2023</td>
+                            </tr>
+                            <!-- Adicionar mais linhas conforme necessário -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="activities-table">
+                    <h2>Atividades Não Concluídas</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Atividade</th>
+                                <th>Prazo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Atividade 3</td>
+                                <td>20/10/2023</td>
+                            </tr>
+                            <tr>
+                                <td>Atividade 4</td>
+                                <td>22/10/2023</td>
+                            </tr>
+                            <!-- Adicionar mais linhas conforme necessário -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <section id="calendar">
+                <h2>Calendário Anual</h2>
+                <div id="calendar-box">
+                    <div id="calendar-container"></div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2023 - CMYT</p>
+        </footer>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <!-- Moment.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+
+    <!-- FullCalendar -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+    <script src="/testeteste/controllers/app.js"></script>
+</body>
+</html>
