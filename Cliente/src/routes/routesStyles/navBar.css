@@ -1,0 +1,74 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+
+#pageWithOutlet{
+    width: 100%;
+}
+
+#navbar{
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+#center{
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#center *{
+    width: 100%;
+}
+
+#optionButton{
+    font-size: 15px;
+    outline: none;
+    box-shadow: none;
+    border: 1px solid transparent;
+    border-radius: 1rem;
+    width: 8.5rem;
+    cursor: pointer;
+    background-color: #c0a9bd;
+    text-align: center;
+    margin: 1rem;
+    padding: 1rem 2rem;
+}
+
+#optionButton:hover{
+    background-color: #CCCC;
+}
+
+#fullNavBar{
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: fixed;
+    display: flex; 
+    flex-direction: row;
+    width: 100%;
+    height: 20%;
+    justify-content: space-evenly;
+    top: 0;
+    left: 0;
+    background: linear-gradient(to right, rgba(36, 0, 31, 0.6), transparent 30%, rgba(192, 169, 189, 1.2)),
+                linear-gradient(to left, rgba(36, 0, 31, 0.6), transparent 30%, rgba(192, 169, 189, 1.2));
+    background-size: 200% 100%;
+    background-position: left bottom, right bottom;
+    animation: gradientAnimation 3s linear infinite;}
+
+#center h1{
+    font-weight: bold;
+    color: white
+
+}
+

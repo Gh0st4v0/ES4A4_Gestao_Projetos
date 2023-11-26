@@ -1,0 +1,42 @@
+#loginPage {
+  background-color: rgba(85, 39, 79, 0.5);
+  color: white;
+  padding: 20px;
+  width: 300px; /* Adjust the width as needed */
+  margin: auto;
+  margin-top: 100px; /* Adjust the top margin as needed */
+  border-radius: 8px;
+}
+
+h1 {
+  text-align: center;
+}
+
+#loginSection {
+  margin-bottom: 15px;
+}
+
+#loginLabel {
+  display: block;
+  margin-bottom: 5px;
+}
+
+#loginInput {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+#loginButton {
+  width: 100%;
+  padding: 10px;
+  background-color: #4CAF50; /* Green button color, you can change this */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#loginButton:hover {
+  background-color: #45a049; /* Darker green color on hover */
+}
