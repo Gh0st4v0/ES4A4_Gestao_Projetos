@@ -22,6 +22,7 @@ img{
 
 #editar-apagar-projeto{
     display: flex;
+    flex: 1;
     flex-direction: row;
     padding-left: 1rem;
     padding-right: 1rem;
@@ -87,6 +88,7 @@ img{
     border-radius: 1rem;
     display: flex;
     width: 70%;
+    padding: 1rem;
 }
 
 #titulo-do-projeto{
@@ -96,12 +98,14 @@ img{
 
 #selected-project-section,
 #tasks-list {
-    height: 80%;
+    height: 100%;
 }
 
 #selected-project-section{
     flex: 2;
-    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 #tasks-section{

@@ -38,7 +38,67 @@ const login = async (req, res) => {
   }
 };
 
+const getUserByID = async (req, res) =>{
+  const userID = req.params.userID
+  console.log(userID)
+  const user = await userModel.getUserByID(req.db, userID);
+  res.status(200).json(user)
+}
+
+const updateUserInformation = async (req, res) =>{
+  const userID = req.params.userID;
+  const { fieldToUpdate, updatedValue } = req.body;
+
+  try {
+    // Call the model method to update a specific field
+    const isUpdated = await userModel.updateUserInformation(req.db, userID, fieldToUpdate, updatedValue);
+
+    if (isUpdated) {
+      return res.status(200).json({ message: `User ${fieldToUpdate} updated successfully` });
+    } else {
+      return res.status(404).json({ error: 'User not found or not updated' });
+    }
+  } catch (error) {
+    console.error('Error updating user:', error.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+
+const deleteUser = async (req, res) => {
+    const { userLevel, masterUserID } = req.body; // User making the request (passed in the request body)
+    const { userID } = req.params; // User ID to be deleted (passed in the URL parameters)
+
+    try {
+      const userToDelete = await userModel.getUserByID(req.db, userID, masterUserID);
+
+      if (!userToDelete) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+
+      if (userLevel === 'master' && userToDelete.userLevel !== 'master') {
+        const result = await userModel.deleteUser(req.db, userID);
+
+        if (result) {
+          return res.status(200).json({ message: 'User deleted successfully' });
+        } else {
+          return res.status(500).json({ error: 'Failed to delete user' });
+        }
+      } else {
+        return res.status(403).json({ error: 'Unauthorized or cannot delete a master user' });
+      }
+    } catch (error) {
+      console.error('Error deleting user:', error.message);
+      return res.status(500).json({ error: 'Internal Server Error' });
+    }
+  }
+
+
+
 module.exports = {
   getAllUsers,
   login,
+  getUserByID,
+  updateUserInformation,
+  deleteUser
 };

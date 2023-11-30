@@ -4,11 +4,13 @@ import { useAuth } from '../../AuthContext';
 import '../routesStyles/Projects.css'
 import NewProjectModal from './newProjectModalView';
 import NewTaskModal from './newTaskModalView';
+//import UpdateProjectModal from './updateProjectModal';
 
 const Projects = () => {
   //Estados react usados durante a execução do aplicativo
   const [isProjectModalOpen, setProjectModal] = useState(false)
   const [isTaskModalOpen, setTaskModal] = useState(false)
+  const [isEditProjectModalOpen, setEditedModal] = useState(false)
   const [expandedTasksState, setExpandedTasksState] = useState([]);
   const [projects, setProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState(null);
@@ -37,6 +39,16 @@ const Projects = () => {
   //Fecha o modal de criação de tarefas
   const handleCloseTaskModal = () =>{
     setTaskModal(false)
+  }
+
+  //Abre o modal de edição de projetos
+  const handleEditProjectClick = () =>{
+    setEditedModal(true)
+  }
+
+  //Fecha o modal de edição de projetos
+  const handleCloseEditProjectModal = () =>{
+    setEditedModal(false)
   }
 
   //apaga uma tarefa recebida
@@ -118,7 +130,6 @@ const Projects = () => {
 
       if (response.ok) {
         const data = await response.json();
-        console.log('Fetched projects data:', data);
         setProjects(data);
       } else {
         console.error('Failed to fetch projects:', response.statusText);
@@ -186,7 +197,6 @@ const Projects = () => {
     });
     if (tasksResponse.ok) {
       const tasksData = await tasksResponse.json();
-      console.log('Fetched tasks data:', tasksData);
       setTasks(tasksData);
     } else {
       console.error('Failed to fetch tasks:', tasksResponse.statusText);
@@ -262,9 +272,11 @@ const Projects = () => {
         </ul>
       </div>
       <div id="project-and-tasks-section">
+        
         <div id="selected-project-section">
           {selectedProject && (
             <>
+              <div id="upper-part">
               <h2 id='titulo-do-projeto'>{selectedProject.projectName}</h2>
               <div id="project-information-section">
                 <div id="inicio">
@@ -274,8 +286,9 @@ const Projects = () => {
                   <div id="data-label">Data de entrega:</div> {new Date(selectedProject.projectEndDate).toLocaleDateString("pt-BR")}
                 </div>
                 {selectedProject.projectDescription}</div>
+              </div>
               <div id="editar-apagar-projeto">
-                <button id='botao-editar'>editar</button>
+                <button id='botao-editar' onClick={() => handleEditProjectClick()}>editar</button>
                 <button id='botao-apagar' onClick={() => deleteProjects(selectedProject)}>apagar</button>
               </div>
             </>
@@ -325,5 +338,6 @@ const Projects = () => {
     </div>
   );
 };
+      //<UpdateProjectModal isOpen={isEditProjectModalOpen} onClose={handleCloseEditProjectModal} project={selectedProject} onProjectUpdated={handleEditProjectClick}></UpdateProjectModal>
 
 export default Projects;

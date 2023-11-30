@@ -72,6 +72,12 @@ const NewTaskModal = ({ isOpen, onClose, selectedProject, onTaskCreated }) => {
         console.log('Tarefa Criada com Sucesso');
         onClose();
         onTaskCreated(selectedProjectID);
+        // Clear the form by resetting the state variables
+        setTaskName('');
+        setProjectDescription('');
+        setTaskStartDate('');
+        setTaskEndDate('');
+        setSelectedUsers([]);
 
       } else {
         let errorResponse;

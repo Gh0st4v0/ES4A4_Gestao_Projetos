@@ -20,12 +20,20 @@ const NavBar = () => {
     const handleGoToProjects = () => {
         navigate('/nav/projects')
     }
+
+    const handleGoToUser = () =>{
+        navigate('/nav/user')
+    }
+
+    const handleGoToManagement = () =>{
+        navigate('/nav/management')
+    }
     
     return(
         <div id="pageWithOutlet">
             <div id="fullNavBar">
                 <div id="navBar">
-                    <button id="optionButton">Usuario</button>
+                    <button id="optionButton" onClick={handleGoToUser}>Usuario</button>
                     <button id="optionButton" onClick={handleGoToChat}>Chat</button>
                     <button id="optionButton" onClick={handleGoToProjects}>Projetos</button>
                 </div>
@@ -35,7 +43,7 @@ const NavBar = () => {
                 </div>
                 <div id="navBar">
                     <button id="optionButton">Calendario</button>
-                    <button id="optionButton">Gerenciar</button>
+                    <button id="optionButton" onClick={handleGoToManagement}>Gerenciar</button>
                     <button id="optionButton" onClick={handleLogout}>Logout</button>
                 </div>
             </div>

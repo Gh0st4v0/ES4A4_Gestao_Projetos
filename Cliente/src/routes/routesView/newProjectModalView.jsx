@@ -44,6 +44,11 @@ const NewProjectModal = ({isOpen, onClose, onProjectCreated, onProjectAdded}) =>
             onProjectAdded()
             onProjectCreated(responseData.projectId)
             onClose()
+            setProjectName('');
+            setProjectDescription('');
+            setProjectStartDate('');
+            setProjectEndDate('');
+            setSelectedUsers([]);
           } else {
             let errorResponse;
             try {
