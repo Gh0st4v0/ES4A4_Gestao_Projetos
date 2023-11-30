@@ -1,0 +1,337 @@
+:root {
+    --border-color: none /* Slate Blue */
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    color: #080808;
+    background: linear-gradient(to top, rgba(192, 169, 189, 0.4), rgba(192, 169, 189, 1.2));
+    margin: 0;
+}
+
+img{
+    display: flex;
+    background-color: transparent;
+    width: max-content
+}
+
+
+#projects-section, #project-and-tasks-section {
+    background-color: rgba(192, 169, 189, 1);
+}
+
+#editar-apagar-projeto{
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#editar-apagar-projeto *{
+    width: 48%;
+    padding: .5rem;
+    margin: 1rem 0 0 0;
+    border-radius: 1rem;
+    border: transparent;
+}
+
+#editar-apagar-projeto *:hover{
+    cursor: pointer;
+}
+
+#botao-editar{
+    background-color: #f4f2f3;
+    color: #080808;
+}
+
+#botao-editar:hover{
+    background-color: rgba(85, 39, 79, 0.1);
+}
+
+#botao-apagar{
+    background-color: rgb(255, 101, 101);
+}
+
+#botao-apagar:hover{
+    background-color: red;
+}
+
+#project-item, #task-item {
+    display: flex;
+    background-color: #f4f2f3;
+    align-items: center;
+    justify-content: center;
+}
+
+#inicio, #entrega{
+    display: flex;
+    flex-direction: row;
+}
+
+#data-label{
+    font-weight: bold;
+}
+
+#projects-main {
+    margin-top: 19vh;
+    display: flex;
+    justify-content: center;
+    height: 75vh;
+    width: 90vw;
+}
+
+#project-and-tasks-section {
+    border: 2px solid var(--border-color);
+    border-radius: 1rem;
+    display: flex;
+    width: 70%;
+    padding: 1rem;
+}
+
+#titulo-do-projeto{
+    overflow-x: auto;
+    max-height: 5rem;
+}
+
+#selected-project-section,
+#tasks-list {
+    height: 100%;
+}
+
+#selected-project-section{
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#tasks-section{
+    flex: 1.5;
+    padding: 1rem;
+}
+
+
+#tasks-section {
+    border-image: linear-gradient(transparent, white, transparent) 5;
+    border-width: 4px;
+    border-left: 2px solid;
+}
+
+#project-item {
+    border: 2px solid var(--border-color);
+    border-radius: 1rem;
+    height: 6rem;
+    max-height: 6rem;
+    overflow: hidden;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    text-overflow: ellipsis;
+    transition: background-color 0.15s ease-in-out; /* Add transition for background color */
+}
+
+#project-item:hover, #task-item:hover{
+    background-color: rgba(85, 39, 79, 0.1);
+    cursor: pointer;
+}
+
+#project-information-section {
+    padding: 1rem;
+    height: 50vh;
+    overflow-y: auto;
+    text-align: left;
+}
+
+#tasks-list {
+    border-radius: 1rem;
+    overflow-y: auto;
+}
+
+#task-item {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    border: 2px solid var(--border-color);
+    border-radius: 1rem;
+    margin: .5rem;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.15s ease-in-out; /* Add transition for background color */
+}
+
+#opcoes-tarefa{
+    display: flex;
+    justify-content: space-between;
+}
+
+#opcoes-tarefa *{
+    color: #080808;
+    display: flex;
+    align-items: center;
+    background-color: rgb(255, 140, 140);
+    transition: background-color 0.15s ease-in-out; /* Add transition for background color */
+    flex: 1;
+    margin: .2rem;
+    border: transparent;
+    padding: .7rem 1rem .7rem 1rem;
+    border-radius: 1rem;
+}
+
+#opcoes-tarefa *:hover{
+    cursor: pointer;
+}
+
+#task-item.done #opcoes-tarefa  *{
+    background-color: rgb(202, 255, 123);
+}
+
+#task-item.done{
+    background-color: greenyellow;
+    font-weight: 400;
+}
+
+#task-item.done:hover{
+    background-color: green;
+}
+
+#task-item.undone{
+    background-color: rgb(255, 101, 101);
+    font-weight: 400;
+}
+
+#task-item.undone:hover{
+    background-color: red;
+}
+
+ul {
+    list-style: none;
+}
+
+#projects-section {
+    border: 2px solid var(--border-color);
+    border-radius: 1rem;
+    width: 25%;
+    padding: 1rem;
+    margin-right: 1rem;
+}
+
+#projects-list {
+    max-height: 90%;
+    border-radius: 1rem;
+    overflow-y: auto;
+
+}
+
+/* Hide scrollbar for webkit browsers */
+::-webkit-scrollbar {
+    width: 0;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+
+/*modal*/
+
+.modal{
+    display: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.criar-projeto-modal{
+    background-color: #f4f2f3;
+    width: 30vw;
+    padding: 1.5rem;
+    border-radius: .5rem;
+}
+
+#modalButtons button{
+    width: 50%;
+    height: 3rem;
+    font-size: 1.5rem;
+    border: transparent;
+    margin-top: 1rem;
+    border-radius: .5rem;
+}
+
+#modalButtons button:hover{
+    cursor: pointer;
+}
+
+#modalButtons{
+    display: flex;
+    justify-content: space-between;
+}
+
+#modalCancelar{
+    background-color: rgb(255, 101, 101);
+    margin-right: 1rem;
+}
+
+#modalAdicionar{
+    background-color: rgb(75, 124, 0);
+}
+
+.close{
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover, .close:focus{
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal.open{
+    display: flex;
+}
+
+.descriptionField{
+    height: 30vh;
+    overflow-y: auto;
+    text-align: left;
+    white-space: pre-wrap;
+    vertical-align: top; /* Align text to the top */
+    resize: none;
+}
+
+.taskDescriptionField{
+    height: 10vh;
+    width: 100%;
+    overflow-y: auto;
+    text-align: left;
+    white-space: pre-wrap;
+    vertical-align: top; /* Align text to the top */
+    resize: none;
+}
+
+#modalLabel {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  #modalInput {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-bottom: .7rem;
+    border-radius: .5rem;
+    border: transparent;
+    background-color: #3B3B3B;
+  }
+
