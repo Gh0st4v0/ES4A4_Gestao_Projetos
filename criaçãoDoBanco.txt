@@ -1,0 +1,75 @@
+CREATE DATABASE `abc_hub` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE TABLE `projects` (
+  `projectID` int NOT NULL AUTO_INCREMENT,
+  `projectName` varchar(255) NOT NULL,
+  `projectDescription` varchar(1500) DEFAULT NULL,
+  `projectStartDate` date DEFAULT NULL,
+  `projectEndDate` date DEFAULT NULL,
+  PRIMARY KEY (`projectID`)
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `tasks` (
+  `taskID` int NOT NULL AUTO_INCREMENT,
+  `taskName` varchar(255) NOT NULL,
+  `taskDescription` text,
+  `taskStartDate` date DEFAULT NULL,
+  `taskEndDate` date DEFAULT NULL,
+  `projectID` int DEFAULT NULL,
+  `status` varchar(10) DEFAULT 'undone',
+  PRIMARY KEY (`taskID`),
+  KEY `projectID` (`projectID`),
+  CONSTRAINT `tasks_ibfk_1` FOREIGN KEY (`projectID`) REFERENCES `projects` (`projectID`),
+  CONSTRAINT `tasks_chk_1` CHECK ((`status` in (_utf8mb4'undone',_utf8mb4'done')))
+) ENGINE=InnoDB AUTO_INCREMENT=207 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `users` (
+  `userID` int NOT NULL AUTO_INCREMENT,
+  `userName` varchar(255) NOT NULL,
+  `fullName` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `jobRole` varchar(255) DEFAULT NULL,
+  `userLevel` varchar(10) DEFAULT NULL,
+  `pwd` varchar(255) NOT NULL,
+  PRIMARY KEY (`userID`),
+  CONSTRAINT `users_chk_1` CHECK ((`userLevel` in (_utf8mb4'user',_utf8mb4'admin',_utf8mb4'master')))
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `user_projects` (
+  `userID` int DEFAULT NULL,
+  `projectID` int DEFAULT NULL,
+  KEY `userID` (`userID`),
+  KEY `projectID` (`projectID`),
+  CONSTRAINT `user_projects_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`),
+  CONSTRAINT `user_projects_ibfk_2` FOREIGN KEY (`projectID`) REFERENCES `projects` (`projectID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `user_tasks` (
+  `userID` int NOT NULL,
+  `taskID` int NOT NULL,
+  PRIMARY KEY (`userID`,`taskID`),
+  KEY `taskID` (`taskID`),
+  CONSTRAINT `user_tasks_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`) ON DELETE CASCADE,
+  CONSTRAINT `user_tasks_ibfk_2` FOREIGN KEY (`taskID`) REFERENCES `tasks` (`taskID`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `group_messages` (
+  `groupMessageID` int NOT NULL AUTO_INCREMENT,
+  `userID` int DEFAULT NULL,
+  `projectID` int DEFAULT NULL,
+  PRIMARY KEY (`groupMessageID`),
+  KEY `userID` (`userID`),
+  KEY `projectID` (`projectID`),
+  CONSTRAINT `group_messages_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`),
+  CONSTRAINT `group_messages_ibfk_2` FOREIGN KEY (`projectID`) REFERENCES `projects` (`projectID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `messages` (
+  `messageID` int NOT NULL AUTO_INCREMENT,
+  `senderID` int DEFAULT NULL,
+  `recipientID` int DEFAULT NULL,
+  `projectID` int DEFAULT NULL,
+  `content` text NOT NULL,
+  `timestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`messageID`),
+  KEY `senderID` (`senderID`),
+  KEY `recipientID` (`recipientID`),
+  KEY `projectID` (`projectID`),
+  CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`senderID`) REFERENCES `users` (`userID`),
+  CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`recipientID`) REFERENCES `users` (`userID`),
+  CONSTRAINT `messages_ibfk_3` FOREIGN KEY (`projectID`) REFERENCES `projects` (`projectID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
