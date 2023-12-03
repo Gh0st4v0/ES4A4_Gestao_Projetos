@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars */
-import Home from "./routesView/homeView";
-import Projects from "./routesView/projectsView";
-import UserPage from "./routesView/userPage";
-import Chat from "./routesView/chat";
-import NotFound from "./routesView/notFound"
-import NavBar from "./routesView/navBarView";
-import ManagementPage from "./routesView/managementPage";
+import Home from "./views/homeView";
+import Projects from "./views/projectsView";
+import UserPage from "./views/userPage";
+import Chat from "./views/chat";
+import NotFound from "./views/notFound"
+import NavBar from "./views/navBarView";
+import ManagementPage from "./views/managementPage";
 import { Routes, Route } from "react-router-dom";
 
 function routesController() {

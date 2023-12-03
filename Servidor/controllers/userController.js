@@ -48,7 +48,7 @@ const getUserByID = async (req, res) =>{
 const updateUserInformation = async (req, res) =>{
   const userID = req.params.userID;
   const { fieldToUpdate, updatedValue } = req.body;
-
+  console.log('valores recebidos field e value',fieldToUpdate,updatedValue)
   try {
     // Call the model method to update a specific field
     const isUpdated = await userModel.updateUserInformation(req.db, userID, fieldToUpdate, updatedValue);

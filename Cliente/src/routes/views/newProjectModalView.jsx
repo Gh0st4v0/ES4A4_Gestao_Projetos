@@ -22,7 +22,6 @@ const NewProjectModal = ({isOpen, onClose, onProjectCreated, onProjectAdded}) =>
           const token = localStorage.getItem('authToken');
           const user = JSON.parse(atob(token.split('.')[1])); // Decode the token
           const userId = user.userId;
-          console.log(userId)
       
           const response = await fetch('http://localhost:3001/projects/newProject', {
             method: 'POST',
@@ -75,7 +74,6 @@ const NewProjectModal = ({isOpen, onClose, onProjectCreated, onProjectAdded}) =>
           try {
             const token = localStorage.getItem('authToken');
             const loggedInUser = JSON.parse(atob(token.split('.')[1])); // Decode the token
-            console.log('logado:',loggedInUser,'id:',loggedInUser.userId)
             const response = await fetch('http://localhost:3001/users', {
               method: 'GET',
               headers: {
@@ -87,7 +85,6 @@ const NewProjectModal = ({isOpen, onClose, onProjectCreated, onProjectAdded}) =>
             if (response.ok) {
               const usersData = await response.json();
               const filteredUsers = usersData.filter(user => user.userID !== loggedInUser.userId);
-              console.log('usuarios filtrados',filteredUsers)
               setAllUsers(filteredUsers);
             } else {
               console.error('Failed to fetch users:', response.statusText);

@@ -9,7 +9,7 @@ router.get('/projects/tasks/all', projectController.getAllTasks) // busca todas 
 router.get('/projects/tasks/:userID', projectController.getTasksByUserId) // busca todas as tasks do usuario 
 router.get('/projects/project/tasks/:projectID', projectController.getTasksByProjectID) //busca todas as tasks de um projeto
 router.get('/projects/task/:taskID') // busca uma task a partir do id
-router.get('/projects/:projectID/users') //busca todos os usuários de um prjeto
+router.get('/projects/:projectID/users', projectController.getUsersFromAProject) //busca todos os usuários de um prjeto
 
 
 router.post('/projects/newProject', projectController.createProject) //cria um novo projeto a partir dos parametros recebidos

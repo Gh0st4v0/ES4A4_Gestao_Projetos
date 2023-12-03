@@ -122,7 +122,6 @@ const deleteProjectById = async (db, projectId) => {
 
     // Delete the project
     const result = await db.promise().query('DELETE FROM projects WHERE projectID = ?', [projectId]);
-    console.log(result.affectedRows > 0)
 
     return !result.affectedRows > 0; // Check if any rows were affected (project deleted)
   } catch (error) {
@@ -144,19 +143,34 @@ const deleteTaskById = async (db, taskID) => {
 };
 
 
-const updateProject = async (db, projectID, projectName, projectDescription, projectStartDate, projectEndDate) => {
+const updateProject = async (db, projectID, projectName, projectDescription, projectStartDate, projectEndDate, users) => {
   try {
+    if (users && users.length > 0) {
+      console.log('Deleting existing user projects for projectID:', projectID);
+      await db.promise().query('DELETE FROM user_projects WHERE projectID = ?', [projectID]);
+
+      console.log('Inserting new user projects:', users);
+      const userProjectsValues = users.map(userID => [userID, projectID]);
+      console.log('valores recebidos no projeto:',userProjectsValues)
+      await db.promise().query(
+        'INSERT INTO user_projects (userID, projectID) VALUES ?', [userProjectsValues]
+      );
+    }
+
+    // Update the project details
+    console.log('Updating project details:', projectName, projectDescription, projectStartDate, projectEndDate, projectID);
     const result = await db.promise().query(
       'UPDATE projects SET projectName=?, projectDescription=?, projectStartDate=?, projectEndDate=? WHERE projectID=?',
       [projectName, projectDescription, projectStartDate, projectEndDate, projectID]
     );
 
-    return result[0].affectedRows > 0; 
+    return result[0].affectedRows > 0;
   } catch (error) {
     console.error('Error updating project:', error.message);
     throw error;
   }
 };
+
 
 const updateTask = async (db, taskID, taskName, taskDescription, taskStartDate, taskEndDate, status) => {
   try {
@@ -173,13 +187,22 @@ const updateTask = async (db, taskID, taskName, taskDescription, taskStartDate, 
 }
 
 const getProjectByProjectID = async (db, projectID) =>{
-  console.log(projectID)
   try {
     const [project] = await db.promise().query('SELECT * FROM projects WHERE projectID = ?', [projectID]);
     return project[0]; // Assuming projectID is unique, so there will be only one result
   } catch (error) {
     console.error('Error fetching project by ID:', error.message);
     throw error;
+  }
+}
+
+const getUsersFromAProject = async (db, projectID) =>{
+  try {
+    const [users] = await db.promise().query('SELECT u.userID, u.userName, u.fullName, u.email, u.jobRole, u.userLevel FROM users u JOIN user_projects up ON u.userID = up.userID WHERE up.projectID = ?',[projectID])
+    return users
+  } catch (error) {
+    console.error('Error fetching users from projects',error.message)
+    throw error
   }
 }
 
@@ -199,4 +222,5 @@ module.exports = { updateProject };
     updateProject,
     updateTask,
     getProjectByProjectID,
+    getUsersFromAProject
   }

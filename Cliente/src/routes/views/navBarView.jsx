@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import '../routesStyles/navBar.css'
+import '../styles/navBar.css'
 import { useAuth } from '../../AuthContext';
 import { useNavigate } from "react-router-dom";
 

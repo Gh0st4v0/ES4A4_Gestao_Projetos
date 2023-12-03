@@ -60,11 +60,29 @@
 
 #information-edit-button{
     background-color:  rgba(192, 169, 189, 1);
+    margin-left: 2vw;
+    flex: .15;
+    border: transparent;
+    border-radius: 1rem;
+    padding: .7rem;
+    font-size: 1.1vw;
+    cursor: pointer;
+}
+
+#information-edit-button.invisivel{
+    background-color:  #f4f2f3;
+    color: #f4f2f3;
     border: transparent;
     border-radius: 1rem;
     padding: 1rem;
     font-size: 1.1vw;
     cursor: pointer;
+}
+
+#information-edit-button.invisivel:hover{
+    background-color:  #f4f2f3;
+    color: #f4f2f3;
+    cursor: auto;
 }
 
 #information-edit-button:hover{
@@ -76,7 +94,17 @@
     flex: 1;
 }
 
-p{
+p, textarea{
     flex: 1;
+    padding: .5rem;
     text-align: left;
+    resize: none;
+}
+
+textarea{
+    background-color: rgba(192, 169, 189, 1);
+    border:transparent;
+    font-size: 1.1vw;
+    border-radius: .5rem;
+    vertical-align: middle;
 }

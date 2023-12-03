@@ -1,4 +1,4 @@
-import '../routesStyles/managementPage.css'
+import '../styles/managementPage.css'
 import { useState, useEffect } from 'react'
 
 const ManagementPage = () =>{

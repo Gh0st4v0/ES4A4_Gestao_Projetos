@@ -1,10 +1,12 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { useAuth } from '../../AuthContext';
-import '../routesStyles/Projects.css'
+import '../styles/Projects.css'
 import NewProjectModal from './newProjectModalView';
 import NewTaskModal from './newTaskModalView';
-//import UpdateProjectModal from './updateProjectModal';
+import UpdateProjectModal from './updateProjectModal';
+import EditTaskModal from './updateTaskModal'; // Adjust the import path based on your project structure
+
 
 const Projects = () => {
   //Estados react usados durante a execução do aplicativo
@@ -15,6 +17,20 @@ const Projects = () => {
   const [projects, setProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState(null);
   const [tasks, setTasks] = useState([]);
+  const [isEditTaskModalOpen, setEditTaskModalOpen] = useState(false);
+  const [selectedTask, setSelectedTask] = useState(null);
+
+  // Function to open the modal and set the selected task
+  const openEditTaskModal = (task) => {
+    setSelectedTask(task);
+    setEditTaskModalOpen(true);
+  };
+
+  // Function to close the modal
+  const closeEditTaskModal = () => {
+    setSelectedTask(null);
+    setEditTaskModalOpen(false);
+  };
 
   //Abre o modal de criação de projeto
   const handleCreateProjectClick = () =>{
@@ -71,7 +87,6 @@ const Projects = () => {
           },
         })
       if (response.ok){
-        console.log('tarefa deletada com sucesso')
         getTasksFromProject(selectedProject.projectID)
       }
       } catch (error) {
@@ -102,7 +117,6 @@ const Projects = () => {
       })
 
       if(response.ok){
-        console.log('projeto deletado com sucesso')
         fetchProjects()
         setTasks(undefined)
         setSelectedProject(undefined)
@@ -155,7 +169,6 @@ const Projects = () => {
 
   //altera o status de uma tarefa recebida
   const changeTaskStatus = async (task) =>{
-    console.log('tarefa recebida:',task)
     const token = localStorage.getItem('authToken');
       try {
         const response = await fetch(`http://localhost:3001/projects/update/task/${task.taskID}`,{
@@ -174,8 +187,6 @@ const Projects = () => {
         })
 
         if (response.ok){
-          console.log('tarefa alterada com sucesso')
-          console.log('buscando tasks do projeto:',selectedProject)
           getTasksFromProject(selectedProject.projectID)
         }
       } catch (error) {
@@ -208,7 +219,6 @@ const Projects = () => {
  
   //abre as informações do projeto quando se clica em um projeto listado
   const handleProjectItemClick = async (projectId) => {
-    console.log('tried to fetch id:',projectId)
     try {
       const token = localStorage.getItem('authToken');
       if (projectId == undefined){
@@ -225,9 +235,7 @@ const Projects = () => {
       });
   
       if (projectResponse.ok) {
-        const projectData = await projectResponse.json();
-        console.log('Fetched project data:', projectData);
-  
+        const projectData = await projectResponse.json();  
         if (projectData && projectData.projectName && projectData.projectDescription) {
           setSelectedProject(projectData);
           
@@ -246,7 +254,6 @@ const Projects = () => {
 
   //expande ou esconde as informações da tarefa quando clicada
   const handleTaskClick = (taskId) => {
-    console.log(taskId)
     setExpandedTasksState((prevExpandedTask) => (prevExpandedTask === taskId ? null : taskId));
   };
   
@@ -288,7 +295,7 @@ const Projects = () => {
                 {selectedProject.projectDescription}</div>
               </div>
               <div id="editar-apagar-projeto">
-                <button id='botao-editar' onClick={() => handleEditProjectClick()}>editar</button>
+                <button id='botao-editar' onClick={() =>handleEditProjectClick()}>editar</button>
                 <button id='botao-apagar' onClick={() => deleteProjects(selectedProject)}>apagar</button>
               </div>
             </>
@@ -314,11 +321,11 @@ const Projects = () => {
                         <div id="data-label">Data de inicio:</div><p>{new Date(task.taskStartDate).toLocaleDateString("pt-BR")}</p>
                       </div>
                       <div id="entrega">
-                        <div id="data-label">Data de inicio:</div><p>{new Date(task.taskEndDate).toLocaleDateString("pt-BR")}</p>
+                        <div id="data-label">Data de término:</div><p>{new Date(task.taskEndDate).toLocaleDateString("pt-BR")}</p>
                       </div>
                       <p>{task.taskDescription}</p>
                       <div id="opcoes-tarefa">
-                        <button id='botao-editar-tarefa'>Editar</button>
+                        <button id='botao-editar-tarefa' onClick={() => openEditTaskModal(task)}>Editar</button>
                         <button id='botao-excluir-tarefa' onClick={() => deleteTask(task.taskID)}>Excluir</button>
                         <button onClick={() => changeTaskStatus(task)}>
                           {task.status === 'done' ? 'Desfazer' : 'Concluir'}
@@ -333,11 +340,24 @@ const Projects = () => {
           </ul>
         </div>
       </div>
+    
+      <EditTaskModal
+        isOpen={isEditTaskModalOpen}
+        onClose={closeEditTaskModal}
+        task={selectedTask}
+        onTaskUpdated={() => {
+          // Handle task updated event if needed
+          closeEditTaskModal();
+          // Optionally, you can refresh the tasks after updating
+          getTasksFromProject(selectedProject.projectID);
+        }}
+      />
       <NewProjectModal isOpen={isProjectModalOpen} onClose={handleCloseProjectModal} onProjectCreated={handleProjectItemClick} onProjectAdded={fetchProjects}/>
       <NewTaskModal isOpen={isTaskModalOpen} onClose={handleCloseTaskModal} selectedProject={selectedProject} onTaskCreated={handleProjectItemClick}/>
+      <UpdateProjectModal isOpen={isEditProjectModalOpen} onClose={handleCloseEditProjectModal} project={selectedProject} onProjectUpdated={handleProjectItemClick}></UpdateProjectModal>
+
     </div>
   );
 };
-      //<UpdateProjectModal isOpen={isEditProjectModalOpen} onClose={handleCloseEditProjectModal} project={selectedProject} onProjectUpdated={handleEditProjectClick}></UpdateProjectModal>
 
 export default Projects;

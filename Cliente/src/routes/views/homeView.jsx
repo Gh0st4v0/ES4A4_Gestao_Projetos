@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import '../routesStyles/Home.css';
+import { useState, useEffect } from 'react';
+import '../styles/Home.css';
 import { useAuth } from '../../AuthContext';
 import {useNavigate} from 'react-router-dom';
 
@@ -8,6 +8,18 @@ const Home = () => {
   const [password, setPassword] = useState('');
   const { login } = useAuth();
   const navigate = useNavigate();
+
+  const handleAlreadyLoggedIn = () =>{
+    const token = localStorage.getItem('authToken')
+    if (token !== null){
+      navigate('/nav/projects')
+    }
+  }
+
+  useEffect(() =>{
+    handleAlreadyLoggedIn()
+  },[])
+  
 
   const handleLogin = async () => {
     try {

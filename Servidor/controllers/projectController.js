@@ -41,8 +41,6 @@ const getAllTasks = async (req, res) => {
     // Call the model method to get all tasks
     const tasks = await projectModel.getAllTasks(req.db);
 
-    console.log('Tasks in getAllTasksController:', tasks); // Log tasks
-
     // Return the tasks in the response
     res.status(200).json(tasks);
   } catch (error) {
@@ -53,10 +51,7 @@ const getAllTasks = async (req, res) => {
 
 const createProject = async (req, res) => {
   try {
-    const { userID, projectName, projectDescription, projectStartDate, projectEndDate, userIDs} = req.body;
-
-    console.log( userID, projectName, projectDescription, projectStartDate, projectEndDate, userIDs)
-    
+    const { userID, projectName, projectDescription, projectStartDate, projectEndDate, userIDs} = req.body;    
 
     if (!userID || !projectName || !projectDescription || !projectStartDate || !projectEndDate) {
       return res.status(400).json({ error: 'All fields are required' });
@@ -127,7 +122,6 @@ const deleteProjectById = async (req, res) => {
   try {
     
     const projectId = req.params.projectID;
-    console.log('Deleting project with ID:', projectId);
     // Assuming you have a method in your model to delete a project and its tasks
     const result = await projectModel.deleteProjectById(req.db, projectId);
 
@@ -147,7 +141,6 @@ const deleteTaskById = async (req, res) => {
   try {
     
     const taskID = req.params.taskID;
-    console.log('Deleting task with ID:', taskID);
     const result = await projectModel.deleteTaskById(req.db, taskID);
 
     if (result) {
@@ -164,16 +157,16 @@ const deleteTaskById = async (req, res) => {
 
 const updateProject =  async (req, res) => {
   const { projectID } = req.params;
-  const { projectName, projectDescription, projectStartDate, projectEndDate } = req.body;
-
+  const { projectName, projectDescription, projectStartDate, projectEndDate, users } = req.body;
+  
   try {
     // Validate that required fields are present in the request body
-    if (!projectName || !projectDescription || !projectStartDate || !projectEndDate) {
+    if (!projectName || !projectDescription || !projectStartDate || !projectEndDate || !users) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
 
     // Call the model method to update the project
-    const isUpdated = await projectModel.updateProject(req.db, projectID, projectName, projectDescription, projectStartDate, projectEndDate);
+    const isUpdated = await projectModel.updateProject(req.db, projectID, projectName, projectDescription, projectStartDate, projectEndDate, users);
 
     // Check if the project was successfully updated
     if (isUpdated) {
@@ -230,6 +223,20 @@ const getProjectByProjectID = async (req, res) => {
   }
 }
 
+const getUsersFromAProject = async (req, res) =>{
+  const projectID = req.params.projectID
+  try {
+    const response = await projectModel.getUsersFromAProject(req.db, projectID)
+    if (!response){
+      res.status(404).json('Users Not Found')
+    }
+    else res.status(200).json(response)
+  } catch (error) {
+    console.error('Error fetching users from a project',error.message)
+    res.status(500).json({error: 'Internal server error'})
+  }
+}
+
 
 module.exports = {
   getAllProjects,
@@ -243,5 +250,6 @@ module.exports = {
   deleteTaskById,
   updateProject,
   updateTask,
-  getProjectByProjectID
+  getProjectByProjectID,
+  getUsersFromAProject
 };
