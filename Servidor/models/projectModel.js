@@ -146,19 +146,14 @@ const deleteTaskById = async (db, taskID) => {
 const updateProject = async (db, projectID, projectName, projectDescription, projectStartDate, projectEndDate, users) => {
   try {
     if (users && users.length > 0) {
-      console.log('Deleting existing user projects for projectID:', projectID);
       await db.promise().query('DELETE FROM user_projects WHERE projectID = ?', [projectID]);
-
-      console.log('Inserting new user projects:', users);
       const userProjectsValues = users.map(userID => [userID, projectID]);
-      console.log('valores recebidos no projeto:',userProjectsValues)
       await db.promise().query(
         'INSERT INTO user_projects (userID, projectID) VALUES ?', [userProjectsValues]
       );
     }
 
     // Update the project details
-    console.log('Updating project details:', projectName, projectDescription, projectStartDate, projectEndDate, projectID);
     const result = await db.promise().query(
       'UPDATE projects SET projectName=?, projectDescription=?, projectStartDate=?, projectEndDate=? WHERE projectID=?',
       [projectName, projectDescription, projectStartDate, projectEndDate, projectID]
@@ -172,11 +167,34 @@ const updateProject = async (db, projectID, projectName, projectDescription, pro
 };
 
 
-const updateTask = async (db, taskID, taskName, taskDescription, taskStartDate, taskEndDate, status) => {
+const updateTask = async (db, taskID, taskName, taskDescription, taskStartDate, taskEndDate, status, users) => {
   try {
+    if (users && users.length > 0) {
+      await db.promise().query('DELETE FROM user_tasks WHERE taskID = ?', [taskID]);
+
+      const userProjectsValues = users.map(userID => [userID, taskID]);
+      await db.promise().query(
+        'INSERT INTO user_tasks (userID, taskID) VALUES ?', [userProjectsValues]
+      );
+    }
+
     const result = await db.promise().query(
       'UPDATE tasks SET taskName=?, taskDescription=?, taskStartDate=?, taskEndDate=?, status=? WHERE taskID=?',
       [taskName, taskDescription, taskStartDate, taskEndDate, status, taskID]
+    );
+
+    return result[0].affectedRows > 0; // Return true if the task was updated successfully
+  } catch (error) {
+    console.error('Error updating task:', error.message);
+    throw error;
+  }
+}
+
+const updateTaskStatus = async (db, taskID, status) => {
+  try {
+    const result = await db.promise().query(
+      'UPDATE tasks SET status=? WHERE taskID=?',
+      [status, taskID]
     );
 
     return result[0].affectedRows > 0; // Return true if the task was updated successfully
@@ -222,5 +240,6 @@ module.exports = { updateProject };
     updateProject,
     updateTask,
     getProjectByProjectID,
-    getUsersFromAProject
+    getUsersFromAProject,
+    updateTaskStatus
   }

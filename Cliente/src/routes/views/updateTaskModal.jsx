@@ -160,6 +160,7 @@ const EditTaskModal = ({ isOpen, onClose, task, onTaskUpdated }) => {
           options={userOptions}
           value={userOptions.filter((option) => selectedUsers.includes(option.value))}
           onChange={(selectedOptions) => setSelectedUsers(selectedOptions.map((option) => option.value))}
+          required
         />
 
         <div id="modalButtons">

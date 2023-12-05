@@ -5,14 +5,11 @@ const userModel = require('../models/userModel');
 const getAllUsers = (req, res) => {
   const db = req.db;
 
-  console.log('Received request in getAllUsers...');
-
   userModel.getAllUsers(db, (err, users) => {
     if (err) {
       console.error('Error in getAllUsers controller:', err);
       return res.status(500).json({ error: 'Database error' });
     }
-    console.log('Sending response in getAllUsers controller:', users);
     res.json(users);
   });
 };
@@ -68,16 +65,16 @@ const updateUserInformation = async (req, res) =>{
 const deleteUser = async (req, res) => {
     const { userLevel, masterUserID } = req.body; // User making the request (passed in the request body)
     const { userID } = req.params; // User ID to be deleted (passed in the URL parameters)
-
+    console.log('id recebido no controller',masterUserID)
     try {
-      const userToDelete = await userModel.getUserByID(req.db, userID, masterUserID);
+      const userToDelete = await userModel.getUserByID(req.db, userID);
 
       if (!userToDelete) {
         return res.status(404).json({ error: 'User not found' });
       }
 
       if (userLevel === 'master' && userToDelete.userLevel !== 'master') {
-        const result = await userModel.deleteUser(req.db, userID);
+        const result = await userModel.deleteUser(req.db, userID, masterUserID);
 
         if (result) {
           return res.status(200).json({ message: 'User deleted successfully' });
@@ -93,6 +90,18 @@ const deleteUser = async (req, res) => {
     }
   }
 
+  const createUser = async (req, res) =>{
+    try {
+      const {userName, fullName, email, jobRole, userLevel, pwd} = req.body
+      if (!userName || !fullName || !email || !jobRole || !userLevel || !pwd) {
+        return res.status(400).json({ error: 'All fields are required' });
+      }
+      const response = await userModel.createUser(req.db, userName, fullName, email, jobRole, userLevel, pwd)
+      return res.status(200).json(response)
+    } catch (error) {
+      console.error('Error creating user:', error.message);
+      return res.status(500).json({ error: 'Internal Server Error' });    }
+  }
 
 
 module.exports = {
@@ -100,5 +109,6 @@ module.exports = {
   login,
   getUserByID,
   updateUserInformation,
-  deleteUser
+  deleteUser,
+  createUser
 };
