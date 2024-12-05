@@ -1,0 +1,90 @@
+#chat-main{
+    margin-top: 19vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 75vh;
+    width: 90vw;
+    background-color: rgba(192, 169, 189, 1);
+    border-radius: 1rem;
+}
+
+#chat-display-and-text-area{
+    width: 60%;
+    padding: 1rem;
+    height: 75vh;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+#message.sent {
+    background-color: rgb(192, 116, 182); /* Light blue for sent messages */
+    align-self: flex-end; /* Align sent messages to the right */
+    padding-left: 2rem;
+  }
+  
+#message.received {
+    background-color: rgb(255, 191, 246);
+    align-self: flex-start; /* Align received messages to the left */
+    padding-right: 2rem;
+  }
+  
+#message {
+    border-radius: 1rem;
+    max-width: max-content;
+    word-wrap: break-word; /* Wrap text to the next line if it's too long */
+    width: 70%;
+    max-height: min-content;
+    padding: 0.7rem;
+    margin-bottom: 1rem;
+    height: fit-content;
+  }
+  
+
+#message-display-area{
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0 .5rem 0;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+#first-area{
+    background-color: #f4f2f3;
+    height: 60vh;
+    border-radius: 1rem;
+    overflow: auto;
+}
+
+#message-area-and-button{
+    display: flex;
+    flex-direction: row;
+    height: 8vh;
+    width: 100%;
+}
+
+#message-area-and-button *{
+    height: 100%;
+    border: transparent;
+}
+
+#write-message-button{
+    padding: 0;
+    font-size: 18px;
+    width: 75%;
+    color: black;
+    background-color: #f4f2f3;
+    border-radius: 1rem 0 0 1rem;
+}
+
+#send-message-button{
+    width: 25%;
+    border-radius: 0 1rem 1rem 0;
+}
+
+#sender{
+    font-weight: bold;
+}

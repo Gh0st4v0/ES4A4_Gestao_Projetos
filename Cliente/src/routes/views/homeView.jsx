@@ -1,15 +1,18 @@
+/* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react';
 import '../styles/Home.css';
 import { useAuth } from '../../AuthContext';
 import {useNavigate} from 'react-router-dom';
+import io from 'socket.io-client';
 
-const Home = () => {
+
+const Home = ({setSocket}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const handleAlreadyLoggedIn = () =>{
+  const handleAlreadyLoggedIn = async () =>{
     const token = localStorage.getItem('authToken')
     if (token !== null){
       navigate('/nav/projects')
@@ -18,6 +21,10 @@ const Home = () => {
 
   useEffect(() =>{
     handleAlreadyLoggedIn()
+    const storedSocket = localStorage.getItem('socket');
+    if (storedSocket) {
+      setSocket(io.connect(JSON.parse(storedSocket)));
+    }
   },[])
   
 
@@ -34,7 +41,19 @@ const Home = () => {
       if (response.ok) {
         const { token } = await response.json();
         login(token);
-        console.log('Login successful, token:', token);
+  
+        // Connect to the server
+        const socket = io.connect('http://localhost:3001');
+        socket.emit('set_username', username);
+  
+        // Store only the necessary information in localStorage
+        const socketInfo = {
+          id: socket.id,
+          username,
+        };
+  
+        localStorage.setItem('socketInfo', JSON.stringify(socketInfo));
+        setSocket(socket);
         navigate('/nav/projects');
       } else {
         // Handle login failure
@@ -44,6 +63,7 @@ const Home = () => {
       console.error('Error during login:', error);
     }
   };
+  
   
 
   return (

@@ -28,7 +28,6 @@ const UserPage = () => {
         const token = localStorage.getItem('authToken');
         if (changesMade){
             try {
-                console.log('newName:',editedInfo.userName)
                 const response = await fetch(`http://localhost:3001/users/edit/${userInfo.userID}`, {
                     method: 'PUT',
                     headers: {
@@ -40,14 +39,10 @@ const UserPage = () => {
                         updatedValue: editedInfo.userName
                     })
                 });
-                if (response.ok){
-                    console.log('Nome alterado com sucesso')
-                }
             } catch (error) {
                 console.error('Erro na atualização de tarefa',error)
             }
             getUserInformation();
-            console.log('Changes Saved:', editedInfo);
         }
         // Update state and exit edit mode
         setChangesMade(false);
@@ -58,7 +53,6 @@ const UserPage = () => {
         const token = localStorage.getItem('authToken');
         if (changesMade){
             try {
-                console.log('newName:',editedInfo.userName)
                 const response = await fetch(`http://localhost:3001/users/edit/${userInfo.userID}`, {
                     method: 'PUT',
                     headers: {
@@ -70,14 +64,10 @@ const UserPage = () => {
                         updatedValue: editedInfo.fullName
                     })
                 });
-                if (response.ok){
-                    console.log('Nome Completo alterado com sucesso')
-                }
             } catch (error) {
                 console.error('Erro na atualização do nome completo',error)
             }
             getUserInformation();
-            console.log('Changes Saved:', editedInfo);
         }
         // Update state and exit edit mode
         setChangesMade(false);
@@ -106,7 +96,6 @@ const UserPage = () => {
             if (response.ok) {
                 const info = await response.json();
                 setUserInfo(info);
-                console.log(info)
             } else {
                 console.error('Não foi possível recuperar as informações do usuário');
             }

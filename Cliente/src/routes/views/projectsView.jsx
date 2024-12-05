@@ -22,6 +22,12 @@ const Projects = () => {
 
   // Function to open the modal and set the selected task
   const openEditTaskModal = (task) => {
+    const token = localStorage.getItem('authToken')
+    const user = JSON.parse(atob(token.split('.')[1]))
+    if (user.userLevel == 'user'){
+      window.alert('Usuários padrão não podem editar tarefas')
+      return
+    }
     setSelectedTask(task);
     setEditTaskModalOpen(true);
   };
@@ -34,6 +40,12 @@ const Projects = () => {
 
   //Abre o modal de criação de projeto
   const handleCreateProjectClick = () =>{
+    const token = localStorage.getItem('authToken')
+    const user = JSON.parse(atob(token.split('.')[1]))
+    if (user.userLevel == 'user'){
+      window.alert('Usuários padrão não podem criar projetos')
+      return
+    }
     setProjectModal(true)
   }
 
@@ -44,6 +56,12 @@ const Projects = () => {
 
   //Abre o modal de criação de tarefas, se um projeto estiver selecionado
   const handleCreateTaskClick = () =>{
+    const token = localStorage.getItem('authToken')
+    const user = JSON.parse(atob(token.split('.')[1]))
+    if (user.userLevel == 'user'){
+      window.alert('Usuários padrão não podem criar tarfas')
+      return
+    }
     if (selectedProject != undefined){
       setTaskModal(true)
     }
@@ -59,6 +77,12 @@ const Projects = () => {
 
   //Abre o modal de edição de projetos
   const handleEditProjectClick = () =>{
+    const token = localStorage.getItem('authToken')
+    const user = JSON.parse(atob(token.split('.')[1]))
+    if (user.userLevel == 'user'){
+      window.alert('Usuários padrão não podem editar projetos')
+      return
+    }
     setEditedModal(true)
   }
 
@@ -171,7 +195,7 @@ const Projects = () => {
   const changeTaskStatus = async (task) =>{
     const token = localStorage.getItem('authToken');
       try {
-        const response = await fetch(`http://localhost:3001/projects/update/task/${task.taskID}`,{
+        const response = await fetch(`http://localhost:3001/projects/update/task/status/${task.taskID}`,{
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',

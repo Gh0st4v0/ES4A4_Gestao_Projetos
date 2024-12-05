@@ -7,14 +7,16 @@ import NotFound from "./views/notFound"
 import NavBar from "./views/navBarView";
 import ManagementPage from "./views/managementPage";
 import { Routes, Route } from "react-router-dom";
+import { useState } from "react";
 
-function routesController() {
+function RoutesController() {
+    const [socket, setSocket] = useState(null)
     return (
         <Routes>
-            <Route path="/" element={<Home/>}/>
+            <Route path="/" element={<Home setSocket = {setSocket}/>}/>
             <Route path="/nav" element={<NavBar/>}>
                 <Route path="/nav/projects" element={<Projects/>}/>
-                <Route path="/nav/chat" element={<Chat/>}/>
+                <Route path="/nav/chat" element={<Chat socket = {socket}/>}/>
                 <Route path="/nav/user" element={<UserPage/>}/>
                 <Route path="/nav/management" element={<ManagementPage/>}/>
             </Route>
@@ -23,4 +25,4 @@ function routesController() {
     )
 }
 
-export default routesController
+export default RoutesController

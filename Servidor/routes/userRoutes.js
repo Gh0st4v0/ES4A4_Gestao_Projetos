@@ -6,6 +6,7 @@ router.get('/users', userController.getAllUsers); //retorna todos os usuários d
 router.get('/users/:userID', userController.getUserByID) // retorna um usuario pelo userID
 
 router.post('/login', userController.login);
+router.post('/users/create', userController.createUser)
 
 router.put('/users/edit/:userID', userController.updateUserInformation)
 

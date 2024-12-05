@@ -50,9 +50,7 @@ const NewTaskModal = ({ isOpen, onClose, selectedProject, onTaskCreated }) => {
   const handleModalSubmit = async (e, selectedProjectID) => {
     e.preventDefault();
     try {
-      const token = localStorage.getItem('authToken');
-      console.log('OS USERS RECEBIDOS NA FUNÇÃO:', selectedUsers);
-  
+      const token = localStorage.getItem('authToken');  
       const response = await fetch(`http://localhost:3001/projects/newTask/${selectedProjectID}`, {
         method: 'POST',
         headers: {
@@ -69,7 +67,6 @@ const NewTaskModal = ({ isOpen, onClose, selectedProject, onTaskCreated }) => {
       });
   
       if (response.ok) {
-        console.log('Tarefa Criada com Sucesso');
         onClose();
         onTaskCreated(selectedProjectID);
         // Clear the form by resetting the state variables

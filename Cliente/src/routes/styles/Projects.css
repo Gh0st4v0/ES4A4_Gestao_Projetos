@@ -205,6 +205,7 @@ img{
 #task-item.undone{
     background-color: rgb(255, 101, 101);
     font-weight: 400;
+    
 }
 
 #task-item.undone:hover{

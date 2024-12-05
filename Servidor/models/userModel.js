@@ -50,6 +50,7 @@ const getAllUsers = (db, callback) => {
   }
 
   const deleteUser = async (db, userID, masterUserID) => {
+    console.log('id recebido no model', masterUserID)
     try {
       // Check if the user is the only one assigned to any project
       const [projectsResult] = await db.promise().query('SELECT projectID FROM user_projects WHERE userID = ?', [userID]);
@@ -62,20 +63,44 @@ const getAllUsers = (db, callback) => {
           const [assignedUsersResult] = await db.promise().query('SELECT COUNT(*) AS userCount FROM user_projects WHERE projectID = ?', [projectID]);
   
           const userCount = assignedUsersResult[0].userCount;
-  
+          console.log('userCount:',userCount)
           if (userCount === 1) {
             // If the user is the only one assigned, assign the master user to the project
+            console.log(`Assigning master user (${masterUserID}) to project (${projectID})`);
             await db.promise().query('INSERT INTO user_projects (userID, projectID) VALUES (?, ?)', [masterUserID, projectID]);
           }
         }
       }
   
+      // Check if the master user is already assigned to the projects of the user being deleted
+      const [masterProjectsResult] = await db.promise().query('SELECT projectID FROM user_projects WHERE userID = ?', [masterUserID]);
+  
+      for (const projectRow of projectsResult) {
+        const projectID = projectRow.projectID;
+  
+        // If the master user is not assigned to the project, assign them
+        const isMasterAssigned = masterProjectsResult.some((row) => row.projectID === projectID);
+  
+        if (!isMasterAssigned) {
+          console.log(`Assigning master user (${masterUserID}) to project (${projectID})`);
+          await db.promise().query('INSERT INTO user_projects (userID, projectID) VALUES (?, ?)', [masterUserID, projectID]);
+        }
+      }
+  
       // Delete entries from junction tables
+      console.log(`Deleting entries from junction tables for user (${userID})`);
       await db.promise().query('DELETE FROM user_tasks WHERE userID = ?', [userID]);
       await db.promise().query('DELETE FROM user_projects WHERE userID = ?', [userID]);
   
       // Delete the user from the main users table
+      console.log(`Deleting user (${userID}) from the main users table`);
       const [result] = await db.promise().query('DELETE FROM users WHERE userID = ?', [userID]);
+  
+      if (result.affectedRows > 0) {
+        console.log(`User (${userID}) deleted successfully`);
+      } else {
+        console.log(`User (${userID}) not found or not deleted`);
+      }
   
       return result.affectedRows > 0;
     } catch (error) {
@@ -84,14 +109,22 @@ const getAllUsers = (db, callback) => {
     }
   };
   
-  module.exports = { deleteUser };
-  
+    
+  const createUser = async (db, userName, fullName, email, jobRole, userLevel, pwd) =>{
+    try {
+      const [result] = await db.promise().query('INSERT INTO users (userName, fullName, email, jobRole, userLevel, pwd) VALUES (?, ?, ?, ?, ?, ?)',[userName, fullName, email, jobRole, userLevel, pwd])
+      return result.insertId
+    } catch (error) {
+      console.error('Erro na criação do usuário',error.message)
+    }
+  }
   
   module.exports = {
     getAllUsers,
     getUserByUsername,
     getUserByID,
     updateUserInformation,
-    deleteUser
+    deleteUser,
+    createUser
   };
   

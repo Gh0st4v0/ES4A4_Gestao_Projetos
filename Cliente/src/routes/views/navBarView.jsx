@@ -26,6 +26,12 @@ const NavBar = () => {
     }
 
     const handleGoToManagement = () =>{
+        const token = localStorage.getItem('authToken')
+        const user = JSON.parse(atob(token.split('.')[1]))
+        if (user.userLevel == 'user'){
+        window.alert('Usuários padão não podem gerenciar outros usuários')
+        return
+        }
         navigate('/nav/management')
     }
     

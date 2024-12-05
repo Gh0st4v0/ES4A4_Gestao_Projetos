@@ -100,7 +100,6 @@ useEffect(() => {
     e.preventDefault();
     const startDate = formatToSQLDate(formattedStartDate);
     const endDate = formatToSQLDate(formattedEndDate);
-    console.log('Selected users:',selectedUsers)
     try {
       const token = localStorage.getItem('authToken');
       const response = await fetch(`http://localhost:3001/projects/update/project/${project.projectID}`, {

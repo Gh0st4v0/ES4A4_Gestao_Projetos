@@ -22,6 +22,7 @@ router.delete('/projects/delete/task/:taskID', projectController.deleteTaskById)
 
 router.put('/projects/update/project/:projectID', projectController.updateProject) // atualiza um projeto a partir dos parametros recebidos
 router.put('/projects/update/task/:taskID', projectController.updateTask) // atualiza uma tarefa a partir dos parametros recebidos
+router.put('/projects/update/task/status/:taskID', projectController.updateTaskStatus) // atualiza o status de uma tarefa a partir do ID
 
 
 module.exports = router;

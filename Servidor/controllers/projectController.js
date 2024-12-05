@@ -182,16 +182,42 @@ const updateProject =  async (req, res) => {
 
 const updateTask = async (req, res) => {
   const { taskID } = req.params;
-const { taskName, taskDescription, taskStartDate, taskEndDate, status } = req.body;
+const { taskName, taskDescription, taskStartDate, taskEndDate, status, users } = req.body;
 
 try {
   // Validate that required fields are present in the request body
-  if (!taskName || !taskDescription || !taskStartDate || !taskEndDate || !status) {
+  if (!taskName || !taskDescription || !taskStartDate || !taskEndDate || !status || !users) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
  
   // Call the model method to update the task
-  const isUpdated = await projectModel.updateTask(req.db, taskID, taskName, taskDescription, taskStartDate, taskEndDate, status);
+  const isUpdated = await projectModel.updateTask(req.db, taskID, taskName, taskDescription, taskStartDate, taskEndDate, status, users);
+
+  // Check if the task was successfully updated
+  if (isUpdated) {
+    return res.status(200).json({ message: 'Task updated successfully' });
+  } else {
+    return res.status(404).json({ error: 'Task not found or not updated' });
+  }
+} catch (error) {
+  console.error('Error updating task:', error.message);
+  return res.status(500).json({ error: 'Internal Server Error' });
+}
+
+}
+
+const updateTaskStatus = async (req, res) => {
+  const { taskID } = req.params;
+const {status} = req.body;
+
+try {
+  // Validate that required fields are present in the request body
+  if (!status) {
+    return res.status(400).json({ error: 'Missing required fields' });
+  }
+ 
+  // Call the model method to update the task
+  const isUpdated = await projectModel.updateTaskStatus(req.db, taskID, status);
 
   // Check if the task was successfully updated
   if (isUpdated) {
@@ -251,5 +277,6 @@ module.exports = {
   updateProject,
   updateTask,
   getProjectByProjectID,
-  getUsersFromAProject
+  getUsersFromAProject,
+  updateTaskStatus
 };
